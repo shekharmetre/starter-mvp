@@ -19,8 +19,7 @@ export function Header() {
             initial={{ y: -12, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            className='sticky top-0 z-50 w-full bg-white shadow-sm'
-            onClick={() => router.push('/cart')}>
+            className='sticky top-0 z-50 w-full bg-white shadow-sm'>
             <div className='flex items-center justify-between px-2'>
                 {/* LEFT */}
                 <div className='flex items-center gap-2 p-2 py-3'>
@@ -63,7 +62,10 @@ export function Header() {
                 </div>
 
                 {/* RIGHT */}
-                <motion.div whileHover={{ scale: 1.08 }} transition={{ type: 'spring', stiffness: 300 }}>
+                <motion.div
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                    onClick={() => router.push('/cart')}>
                     <Image src='/bell.svg' alt='bell' width={40} height={40} className='h-10 w-10 p-2' />
                 </motion.div>
             </div>

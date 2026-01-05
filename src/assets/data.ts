@@ -73,6 +73,101 @@ export const screenProtectorProducts = [
 
 export const AllProduct = [
     {
+        title: 'CrystalShield 11D Glass',
+        desc: 'Ultra-clear 11D Glass | Full-Screen Coverage | Strong Edge Protection',
+        review: 186,
+        rating: 4.8,
+        price: 499,
+        image: '/images/products-images/eleven-D.png',
+        isTopProduct: true,
+
+        id: '11d-glass',
+        slug: '11d-glass',
+        name: 'CrystalShield 11D',
+        type: 'Screen Protector',
+        description:
+            'Ultra-clear 11D tempered glass with full-screen coverage and strong edge protection. Smooth touch and maximum clarity for daily use.',
+        reviews: 186,
+        basePrice: 999,
+        discountedPrice: 499
+    },
+    {
+        title: 'SuperGuard D Glass',
+        desc: 'Extra Durable Glass | High Impact Resistance | Long-Lasting Protection',
+        review: 142,
+        rating: 4.6,
+        price: 449,
+        image: '/images/products-images/super-D.png',
+        isTopProduct: false,
+
+        id: 'super-d-glass',
+        slug: 'super-d-glass',
+        name: 'SuperGuard D',
+        type: 'Screen Protector',
+        description:
+            'Premium Super-D glass designed for extra durability and impact resistance. Perfect for users who need strong everyday protection.',
+        reviews: 142,
+        basePrice: 899,
+        discountedPrice: 449
+    },
+    {
+        title: 'MatteView Pro Glass',
+        desc: 'Anti-Glare Matte Glass | Fingerprint Resistant | Smooth Touch',
+        review: 121,
+        rating: 4.5,
+        price: 399,
+        image: '/images/products-images/matte-glass.png',
+        isTopProduct: false,
+
+        id: 'matte-glass',
+        slug: 'matte-glass',
+        name: 'MatteView Pro',
+        type: 'Screen Protector',
+        description:
+            'Anti-glare matte glass that reduces fingerprints and reflections. Ideal for smooth scrolling and outdoor visibility.',
+        reviews: 121,
+        basePrice: 799,
+        discountedPrice: 399
+    },
+    {
+        title: 'D+ Clear Defense Glass',
+        desc: 'Lightweight Protection | Clear Display | Budget Friendly',
+        review: 75,
+        rating: 4.3,
+        price: 349,
+        image: '/images/products-images/super-D.png',
+        isTopProduct: false,
+
+        id: 'd-plus-glass',
+        slug: 'd-plus-glass',
+        name: 'D+ Clear Defense',
+        type: 'Screen Protector',
+        description:
+            'Lightweight D+ glass offering balanced protection and clarity. A budget-friendly choice with premium feel.',
+        reviews: 75,
+        basePrice: 699,
+        discountedPrice: 349
+    },
+    {
+        title: 'EdgeSafe Armor Glass',
+        desc: 'Edge-to-Edge Protection | Reinforced Borders | Curved Display Safe',
+        review: 98,
+        rating: 4.4,
+        price: 429,
+        image: '/images/products-images/edge-glass.png',
+        isTopProduct: false,
+
+        id: 'edge-glass',
+        slug: 'edge-glass',
+        name: 'EdgeSafe Armor',
+        type: 'Screen Protector',
+        description:
+            'Specially crafted edge-to-edge glass with reinforced borders to protect curved and flat displays from corner damage.',
+        reviews: 98,
+        basePrice: 849,
+        discountedPrice: 429
+    },
+    {
         title: 'VIP 30W Fast Charger',
         desc: '30W Fast Charging | Smart IC Protection | 6 Months Warranty Card',
         review: 864,

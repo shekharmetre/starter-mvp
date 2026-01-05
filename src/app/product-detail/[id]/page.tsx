@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { screenProtectorProducts } from '@/assets/data';
+import { AllProduct, screenProtectorProducts } from '@/assets/data';
 import { DetailContaint } from '@/components/detailPage/detailContent';
 import { Badge } from '@/components/ui/badge';
 import { Product } from '@/lib/types';
@@ -8,8 +8,9 @@ import { Product } from '@/lib/types';
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     console.log(id, 'sdfsdf');
+    console.log(id, 'idsasf');
 
-    const getALlDetail = screenProtectorProducts.find((item) => item.slug === id);
+    const getALlDetail = AllProduct.find((item) => item.slug === id);
     console.log(getALlDetail, 'getALlDetail');
 
     if (!getALlDetail) {

@@ -19,6 +19,7 @@ type Product = {
     rating: number;
     price: number;
     image: string;
+    slug?: string;
 };
 
 export default function ProductCard({ item }: { item: Product }) {
@@ -27,7 +28,7 @@ export default function ProductCard({ item }: { item: Product }) {
 
     return (
         <div className='flex items-center'>
-            <Link href={`/product-detail/${item.title}`}>
+            <Link href={`/product-detail/${item.slug}`}>
                 <Image src={item.image} alt={item.title} width={200} height={200} className='h-32 w-32 object-cover' />
             </Link>
             <div className='relative p-1'>

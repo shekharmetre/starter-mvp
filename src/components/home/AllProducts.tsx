@@ -24,7 +24,7 @@ export default function AllProducts({ productsName = 'All Products' }: { product
 
             {/* Product list */}
             <div className='mt-2 flex flex-col gap-2'>
-                {AllProduct.map((item) => (
+                {AllProduct.filter((item) => item.type != 'Screen Protector').map((item) => (
                     <motion.div
                         key={item.title}
                         initial={{ opacity: 0, y: 14 }}

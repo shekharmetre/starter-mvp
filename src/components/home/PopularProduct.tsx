@@ -1,6 +1,6 @@
 'use client';
 
-import { screenProtectorProducts } from '@/assets/data';
+import { AllProduct, screenProtectorProducts } from '@/assets/data';
 import { HorizontalScrollOne } from '@/hooks/cardWrapper';
 
 import ProductCard from '../ui/product-card';
@@ -47,7 +47,7 @@ export default function PopularProduct({ className = 'mt-4 px-2 py-2' }: { class
             {/* Product list */}
             <motion.div variants={container} initial='hidden' animate='show'>
                 <HorizontalScrollOne>
-                    {screenProtectorProducts.map((itemData, index) => (
+                    {AllProduct.filter((item) => item.type === 'Screen Protector').map((itemData, index) => (
                         <motion.div key={itemData.id} className='will-change-transform'>
                             <ProductCard item={itemData} index={index} />
                         </motion.div>
