@@ -36,7 +36,8 @@ export const useCartStore = create<CartStore>()(
             addItemAsync: async (item) => {
                 set({ isAdding: true });
 
-                await new Promise((r) => setTimeout(r, 300));
+                // ✅ ESLint-safe Promise
+                await new Promise((resolve) => setTimeout(resolve, 300));
 
                 const existing = get().cart.find((i) => i.itemName === item.itemName);
 
@@ -101,7 +102,7 @@ export const useCartStore = create<CartStore>()(
             }
         }),
         {
-            name: 'cart-storage' // ✅ THAT’S IT
+            name: 'cart-storage'
         }
     )
 );
