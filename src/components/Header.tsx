@@ -48,7 +48,7 @@ export function Header() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -6 }}
                                 transition={{ duration: 0.3, ease: 'easeOut' }}>
-                                <Link href='/nearby-location' className='group flex flex-col'>
+                                <Link href='/nearby-location' className='group flex w-[50%] flex-col truncate'>
                                     <span className='truncate text-sm font-semibold text-gray-900 transition-transform duration-300 group-hover:translate-x-0.5'>
                                         {locationText}
                                     </span>
