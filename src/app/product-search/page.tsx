@@ -5,7 +5,6 @@ import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 
 import { AllProduct } from '@/assets/data';
-import AllProducts from '@/components/home/AllProducts';
 import { CategorySelector } from '@/components/product-search/VerticalCategorySelection';
 import { SearchProduct } from '@/components/product-search/search-product';
 import { SearchSelect } from '@/components/product-search/searchFunction';
@@ -13,6 +12,7 @@ import { SearchHero } from '@/components/product-search/searchHero';
 import { Button } from '@/components/ui/button';
 import ProductCard from '@/components/ui/product-card';
 import { HorizontalScrollOne, HorizontalScrollTwo } from '@/hooks/cardWrapper';
+import { useCartStore } from '@/hooks/useCartStore';
 import { Product } from '@/lib/types';
 
 import { ShoppingCart } from 'lucide-react';
@@ -21,6 +21,8 @@ function CartWithSearch() {
     const [query, setQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState<string | null>('All');
     const [filteredData, setFilteredData] = useState<any>([]);
+    const addItemAsync = useCartStore((s) => s.addItemAsync);
+    const isAdding = useCartStore((s) => s.isAdding);
 
     const handleCategoryChange = (category: string) => {
         setSelectedCategory(category);
@@ -62,6 +64,20 @@ function CartWithSearch() {
             secondHalf: AllProduct.slice(mid)
         };
     }, [AllProduct]);
+
+    function handleAddToCart(item: Product) {
+        addItemAsync({
+            id: item.id,
+            itemName: item.name,
+            itemImage: item.image,
+            qty: 1,
+            favourite: false,
+            scratched: false,
+            originalPrice: item.basePrice,
+            discountPercentage: Math.round(((item.basePrice - item.discountedPrice) / item.basePrice) * 100),
+            description: item.description
+        });
+    }
 
     return (
         <div className='min-h-screen bg-[#FAF3F0] p-4'>
@@ -118,9 +134,14 @@ function CartWithSearch() {
                                         <del className='mt-2 ml-2 text-sm text-gray-400'>₹{item.price + 20}</del>
                                     </p>
                                     <div className='grid place-content-end'>
-                                        <button className='mt-5 flex items-center justify-end gap-2 rounded-xl bg-[#FFC4FF] px-3 py-2 text-end font-sans text-sm font-semibold'>
+                                        <button
+                                            onClick={() => {
+                                                handleAddToCart(item);
+                                            }}
+                                            disabled={isAdding}
+                                            className='mt-5 flex items-center justify-end gap-2 rounded-xl bg-[#FFC4FF] px-3 py-2 text-end font-sans text-sm font-semibold'>
                                             <ShoppingCart />
-                                            Add to Cart
+                                            {isAdding ? 'Adding...' : 'Add to Cart'}
                                         </button>
                                     </div>
                                 </div>

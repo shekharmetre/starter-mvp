@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -32,11 +33,10 @@ export const useCartStore = create<CartStore>()(
             isAdding: false,
 
             // ✅ ADD ITEM
-            // ✅ ADD ITEM
             addItemAsync: async (item) => {
                 set({ isAdding: true });
 
-                await new Promise((resolve) => setTimeout(resolve, 1500)); // ✅ fixed
+                await new Promise((r) => setTimeout(r, 300));
 
                 const existing = get().cart.find((i) => i.itemName === item.itemName);
 
@@ -44,6 +44,7 @@ export const useCartStore = create<CartStore>()(
                     set({
                         cart: get().cart.map((i) => (i.id === existing.id ? { ...i, qty: i.qty + item.qty } : i))
                     });
+                    toast.success('Item quantity updated in cart');
                 } else {
                     set({
                         cart: [
@@ -56,39 +57,51 @@ export const useCartStore = create<CartStore>()(
                             }
                         ]
                     });
+                    toast.success('Successfully added to cart');
                 }
 
                 set({ isAdding: false });
             },
 
-            // ✅ REMOVE BY ID
-            removeItem: (id) =>
-                set({
-                    cart: get().cart.filter((i) => i.id !== id)
-                }),
+            removeItem: (id) => {
+                set({ cart: get().cart.filter((i) => i.id !== id) });
+                toast.success('Item removed from cart');
+            },
 
-            // ✅ UPDATE QTY BY ID
-            updateQty: (id, qty) =>
+            updateQty: (id, qty) => {
+                if (qty <= 0) {
+                    set({ cart: get().cart.filter((i) => i.id !== id) });
+                    toast.success('Item removed from cart');
+
+                    return;
+                }
                 set({
                     cart: get().cart.map((i) => (i.id === id ? { ...i, qty } : i))
-                }),
+                });
+            },
 
-            // ✅ TOGGLE FAVOURITE BY ID
-            toggleFavourite: (id) =>
+            toggleFavourite: (id) => {
                 set({
                     cart: get().cart.map((i) => (i.id === id ? { ...i, favourite: !i.favourite } : i))
-                }),
+                });
+            },
 
-            // ✅ MARK SCRATCHED BY ID
-            markScratched: (id) =>
+            markScratched: (id) => {
+                const item = get().cart.find((i) => i.id === id);
+                if (item?.scratched) return;
+
                 set({
                     cart: get().cart.map((i) => (i.id === id ? { ...i, scratched: true } : i))
-                }),
+                });
+            },
 
-            clearCart: () => set({ cart: [] })
+            clearCart: () => {
+                set({ cart: [] });
+                toast.success('Cart cleared');
+            }
         }),
         {
-            name: 'cart-storage'
+            name: 'cart-storage' // ✅ THAT’S IT
         }
     )
 );

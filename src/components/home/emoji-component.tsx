@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { useRouter } from 'next/navigation';
+
 import { AnimatePresence, motion } from 'framer-motion';
 
 const moods = [
@@ -15,6 +17,7 @@ const moods = [
 export default function MoodSelector() {
     const [selected, setSelected] = useState<number | null>(null);
     const [showPopup, setShowPopup] = useState(false);
+    const router = useRouter();
 
     const handleSelect = (index: number) => {
         setSelected(index);
@@ -81,7 +84,7 @@ export default function MoodSelector() {
                             <h2 className='mb-2 text-lg font-semibold'>{moods[selected].label}</h2>
                             <p className='mb-4 text-gray-600'>{moods[selected].message}</p>
                             <button
-                                onClick={() => setShowPopup(false)}
+                                onClick={() => router.push('/product-search')}
                                 className='w-full rounded-lg bg-black py-2 text-white'>
                                 Done
                             </button>
